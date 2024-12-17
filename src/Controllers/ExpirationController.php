@@ -66,7 +66,7 @@ class ExpirationController
     {
         try {
             // Passer l'ID spécifique à la commande artisan
-            Artisan::call('expirations:send-mail', [
+            Artisan::call('expiration-mailer:send-email', [
                 'id' => $id, // En supposant que ta commande accepte un paramètre "id"
             ]);
 

@@ -1,5 +1,5 @@
 {
-    "name": "huserg/expiration-mailer",
+    "name": "huserg/laravel-expiration-mailer",
     "description": "A simple package to implement a simple expiration mail notification for secrets or other reminders",
     "keywords": [
         "huserg",
