@@ -36,13 +36,15 @@ class LaravelExpirationMailerServiceProvider extends PackageServiceProvider
     {
         // Planifier l'exécution de la commande
         $this->app->booted(function () {
+            $schedule = $this->app->make(Schedule::class);
+
             // Planification : 30 jours avant expiration
-            Schedule::command(SendExpirationEmails::class)
+            $schedule->command(SendExpirationEmails::class)
                 ->daily()
                 ->when(fn () => $this->shouldSendEmails(30));
 
             // Planification : 14 jours avant expiration
-            Schedule::command(SendExpirationEmails::class)
+            $schedule->command(SendExpirationEmails::class)
                 ->daily()
                 ->when(fn () => $this->shouldSendEmails(14));
         });
