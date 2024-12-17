@@ -2,9 +2,6 @@
 
 namespace HuserG\LaravelExpirationMailer;
 
-use HuserG\LaravelExpirationMailer\Mail\ExpirationNotification;
-use HuserG\LaravelExpirationMailer\Models\Expiration;
-use Illuminate\Support\Facades\Schedule;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -19,22 +16,9 @@ class LaravelExpirationMailerServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('laravel-expiration-mailer')
-            ->hasConfigFile()
+            ->hasConfigFile('expiration-mailer')
             ->hasViews()
-            ->hasMigration('create_expirations_table');
-    }
-
-    public function boot()
-    {
-        // Planifier l'envoi des emails
-        Schedule::call(function () {
-            $expirations = Expiration::whereDate('expiration_date', now()->toDateString())->get();
-
-            foreach ($expirations as $expiration) {
-                foreach ($expiration->emails as $email) {
-                    Mail::to($email)->send(new ExpirationNotification($expiration->message));
-                }
-            }
-        })->daily();
+            ->hasMigration('create_expirations_table')
+            ->hasCommand(Commands\SendExpirationEmails::class);
     }
 }
