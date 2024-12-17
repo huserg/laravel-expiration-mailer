@@ -59,6 +59,14 @@ Route::group(['prefix' => 'expirations'], function () {
 });
 ```
 
+To override default 30 and 14 days schedule, add this to your `app/Console/Kernel.php`
+```php
+protected function schedule(Schedule $schedule): void
+{
+    $schedule->command('expiration-mailer:send-email')->daily(); # or any other schedule
+}
+```
+
 ## Testing
 
 ```bash

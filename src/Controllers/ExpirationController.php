@@ -3,20 +3,21 @@
 namespace HuserG\LaravelExpirationMailer\Controllers;
 
 use HuserG\LaravelExpirationMailer\Models\Expiration;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Validator;
 
 class ExpirationController
 {
-    public function index()
+    public function index(): \Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\View\View
     {
         $expirations = Expiration::all();
 
         return view('expiration-mailer::expirations.index', compact('expirations'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request): ?RedirectResponse
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
@@ -62,7 +63,7 @@ class ExpirationController
         }
     }
 
-    public function forceSend($id)
+    public function forceSend($id): RedirectResponse
     {
         try {
             // Passer l'ID spécifique à la commande artisan

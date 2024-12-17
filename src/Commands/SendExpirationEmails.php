@@ -41,7 +41,7 @@ class SendExpirationEmails extends Command
         }
     }
 
-    private function sendEmails(Expiration $expiration)
+    private function sendEmails(Expiration $expiration): void
     {
         $emails = is_array($expiration->emails) ? $expiration->emails : json_decode($expiration->emails, true);
 
