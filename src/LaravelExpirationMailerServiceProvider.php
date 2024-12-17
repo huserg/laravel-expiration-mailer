@@ -25,7 +25,7 @@ class LaravelExpirationMailerServiceProvider extends PackageServiceProvider
                 $command
                     ->publishMigrations()
                     ->askToRunMigrations()
-                    ->askToStarRepoOnGitHub('your-vendor/your-repo-name');
+                    ->askToStarRepoOnGitHub('huserg/laravel-expiration-mailer');
             });
     }
 }
