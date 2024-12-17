@@ -100,7 +100,7 @@
     </h1>
 
     <!-- Form -->
-    <form method="POST" action="{{ route('lem.expirations.store') }}" class="space-y-4">
+    <form method="POST" action="{{ route('lem.expirations.store') }}" class="space-y-4 text-black">
         @csrf
         <!-- Name -->
         <div>
