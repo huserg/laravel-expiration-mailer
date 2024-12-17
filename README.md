@@ -53,8 +53,9 @@ Configure your route in `routes/web.php`
 use Huserg\LaravelExpirationMailer\Http\Controllers\ExpirationMailerController;
 
 Route::group(['prefix' => 'expirations'], function () {
-    Route::get('', [ExpirationController::class, 'index'])->name('expiration.index');
-    Route::post('', [ExpirationController::class, 'store'])->name('expiration.store');
+    Route::get('', [ExpirationController::class, 'index'])->name('lem.expirations.index');
+    Route::post('', [ExpirationController::class, 'store'])->name('lem.expirations.store');
+    Route::post('{id}/force-send', [ExpirationController::class, 'forceSend'])->name('lem.expirations.force-send');
 });
 ```
 

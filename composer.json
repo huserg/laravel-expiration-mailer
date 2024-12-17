@@ -1,14 +1,14 @@
 {
-    "name": "huserg/laravel-expiration-mailer",
+    "name": "huserg/expiration-mailer",
     "description": "A simple package to implement a simple expiration mail notification for secrets or other reminders",
     "keywords": [
         "huserg",
         "laravel",
-        "laravel-expiration-mailer"
+        "expiration-mailer"
     ],
     "homepage": "https://github.com/huserg/laravel-expiration-mailer",
     "license": "MIT",
-    "version": "0.1.0",
+    "version": "0.1.3",
     "authors": [
         {
             "name": "Gaétan Huser",

@@ -19,8 +19,8 @@ class ExpirationNotification extends Mailable
 
     public function build()
     {
-        return $this->subject(__('Expiration Notification'))
-            ->view('expiration-manager::email')
+        return $this->subject(__('Expiration Mailer Notification'))
+            ->view('expiration-mailer::email.reminder')
             ->with('message', $this->message);
     }
 }

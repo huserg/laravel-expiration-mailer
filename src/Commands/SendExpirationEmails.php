@@ -9,22 +9,42 @@ use Illuminate\Support\Facades\Mail;
 
 class SendExpirationEmails extends Command
 {
-    protected $signature = 'expiration:send-emails';
-
-    protected $description = 'Send emails to notify about upcoming expirations';
+    protected $signature = 'expiration-mailer:send-email {id?}';
+    protected $description = 'Send expiration emails. Pass an ID to send for a specific expiration.';
 
     public function handle(): void
     {
-        $this->info('Checking for expirations...');
-        $expirations = Expiration::whereDate('expiration_date', now()->toDateString())->get();
+        $id = $this->argument('id');
 
-        foreach ($expirations as $expiration) {
-            foreach ($expiration->emails as $email) {
-                Mail::to($email)->send(mailable: new ExpirationNotification($expiration));
-                $this->info("Email sent to: {$email}");
+        if ($id) {
+            // Envoyer les emails pour une expiration spécifique
+            $expiration = Expiration::find($id);
+
+            if (!$expiration) {
+                $this->error("No expiration found with ID: {$id}");
+                return;
             }
-        }
 
-        $this->info(__('Expiration emails sent successfully.'));
+            $this->sendEmails($expiration);
+            $this->info("Emails sent successfully for expiration ID: {$id}");
+        } else {
+            // Envoyer pour toutes les expirations valides
+            $expirations = Expiration::whereDate('expiration_date', now()->toDateString())->get();
+
+            foreach ($expirations as $expiration) {
+                $this->sendEmails($expiration);
+            }
+
+            $this->info("Emails sent successfully for all expirations.");
+        }
+    }
+
+    private function sendEmails(Expiration $expiration)
+    {
+        $emails = is_array($expiration->emails) ? $expiration->emails : json_decode($expiration->emails, true);
+
+        foreach ($emails as $email) {
+            Mail::to($email)->send(new ExpirationNotification($expiration));
+        }
     }
 }

@@ -18,7 +18,7 @@ class Expiration extends Model
 
     protected $casts = [
         'emails' => 'array', // Stocker les emails sous forme JSON
-        'expiration_date' => 'datetime',
+        'expiration_date' => 'date',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
         'deleted_at' => 'datetime',
