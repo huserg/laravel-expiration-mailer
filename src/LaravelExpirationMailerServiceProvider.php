@@ -35,6 +35,13 @@ class LaravelExpirationMailerServiceProvider extends PackageServiceProvider
 
     public function boot(): void
     {
+
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'expiration-mailer');
+
+        $this->publishes([
+            __DIR__.'/../resources/views' => resource_path('views/vendor/expiration-mailer'),
+        ], 'expiration-mailer-views');
+
         // Planifier l'exécution de la commande
         $this->app->booted(function () {
             $schedule = $this->app->make(Schedule::class);
