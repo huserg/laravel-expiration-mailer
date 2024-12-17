@@ -4,7 +4,6 @@ namespace HuserG\LaravelExpirationMailer;
 
 use HuserG\LaravelExpirationMailer\Commands\SendExpirationEmails;
 use HuserG\LaravelExpirationMailer\Models\Expiration;
-use Illuminate\Support\Facades\Schedule;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
