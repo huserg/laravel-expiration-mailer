@@ -18,7 +18,7 @@ class LaravelExpirationMailerServiceProvider extends PackageServiceProvider
             ->name('laravel-expiration-mailer')
             ->hasConfigFile('expiration-mailer')
             ->hasViews()
-            ->hasMigration('create_expirations_table')
+            ->hasMigration('2024_12_17_111701_create_expirations_table')
             ->hasCommand(Commands\SendExpirationEmails::class);
     }
 }
