@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Mail;
 class SendExpirationEmails extends Command
 {
     protected $signature = 'expiration:send-emails';
+
     protected $description = 'Send emails to notify about upcoming expirations';
 
     public function handle(): void
@@ -26,5 +27,4 @@ class SendExpirationEmails extends Command
 
         $this->info(__('Expiration emails sent successfully.'));
     }
-
 }
