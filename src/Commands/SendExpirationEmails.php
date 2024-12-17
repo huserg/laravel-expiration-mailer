@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Mail;
 class SendExpirationEmails extends Command
 {
     protected $signature = 'expiration-mailer:send-email {id?}';
+
     protected $description = 'Send expiration emails. Pass an ID to send for a specific expiration.';
 
     public function handle(): void
@@ -20,8 +21,9 @@ class SendExpirationEmails extends Command
             // Envoyer les emails pour une expiration spécifique
             $expiration = Expiration::find($id);
 
-            if (!$expiration) {
+            if (! $expiration) {
                 $this->error("No expiration found with ID: {$id}");
+
                 return;
             }
 
@@ -35,7 +37,7 @@ class SendExpirationEmails extends Command
                 $this->sendEmails($expiration);
             }
 
-            $this->info("Emails sent successfully for all expirations.");
+            $this->info('Emails sent successfully for all expirations.');
         }
     }
 

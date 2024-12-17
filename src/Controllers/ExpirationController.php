@@ -39,7 +39,7 @@ class ExpirationController
                 : [$request->input('emails')];
 
             // Nettoyer les emails : enlever les entrées vides et doublons
-            $emails = array_unique(array_filter($emails, fn($email) => filter_var($email, FILTER_VALIDATE_EMAIL)));
+            $emails = array_unique(array_filter($emails, fn ($email) => filter_var($email, FILTER_VALIDATE_EMAIL)));
 
             if (empty($emails)) {
                 return redirect()->back()
@@ -67,12 +67,12 @@ class ExpirationController
         try {
             // Passer l'ID spécifique à la commande artisan
             Artisan::call('expirations:send-mail', [
-                'id' => $id // En supposant que ta commande accepte un paramètre "id"
+                'id' => $id, // En supposant que ta commande accepte un paramètre "id"
             ]);
 
             return redirect()->back()->with('success', __('Email sent successfully via command.'));
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', __('Failed to send email: ' . $e->getMessage()));
+            return redirect()->back()->with('error', __('Failed to send email: '.$e->getMessage()));
         }
     }
 }
