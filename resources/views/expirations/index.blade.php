@@ -66,13 +66,24 @@
         <!-- Mobile View (Cards) -->
         <div class="md:hidden space-y-4">
             @foreach ($expirations as $expiration)
-                <div class="bg-gray-50 border border-gray-600 rounded-lg p-4 shadow-sm">
-                    <p><strong>{{ __('Name') }}:</strong> {{ $expiration->name }}</p>
-                    <p><strong>{{ __('Expiration Date') }}:</strong> {{ $expiration->expiration_date }}</p>
-                    <p><strong>{{ __('Emails') }}:</strong>
-                        {{ implode(', ', json_decode($expiration->emails, true) ?? []) }}
-                    </p>
-                    <p><strong>{{ __('Message') }}:</strong> {{ $expiration->message }}</p>
+                <div class="bg-gray-800 border border-gray-600 rounded-lg p-4 shadow-sm flex">
+                    <div class="">
+                        <p><strong>{{ __('Name') }}:</strong> {{ $expiration->name }}</p>
+                        <p><strong>{{ __('Expiration Date') }}:</strong> {{ $expiration->expiration_date }}</p>
+                        <p><strong>{{ __('Emails') }}:</strong>
+                            {{ implode(', ', json_decode($expiration->emails, true) ?? []) }}
+                        </p>
+                        <p><strong>{{ __('Message') }}:</strong> {{ $expiration->message }}</p>
+                    </div>
+                    <div>
+                        <form method="POST" action="{{ route('lem.expirations.force-send', $expiration->id) }}">
+                            @csrf
+                            <button type="submit"
+                                    class="bg-blue-500 text-white font-semibold py-1 px-2 rounded-lg hover:bg-blue-600 transition duration-300">
+                                {{ __('Send Email') }}
+                            </button>
+                        </form>
+                    </div>
                 </div>
             @endforeach
         </div>

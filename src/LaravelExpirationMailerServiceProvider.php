@@ -2,6 +2,7 @@
 
 namespace HuserG\LaravelExpirationMailer;
 
+use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -18,7 +19,13 @@ class LaravelExpirationMailerServiceProvider extends PackageServiceProvider
             ->name('expiration-mailer')
             ->hasConfigFile('expiration-mailer')
             ->hasViews()
-            ->hasMigration('2024_12_17_111701_create_expirations_table')
-            ->hasCommand(Commands\SendExpirationEmails::class);
+            ->hasMigration('create_expirations_table')
+            ->hasCommand(Commands\SendExpirationEmails::class)
+            ->hasInstallCommand(function(InstallCommand $command) {
+                $command
+                    ->publishMigrations()
+                    ->askToRunMigrations()
+                    ->askToStarRepoOnGitHub('your-vendor/your-repo-name');
+            });
     }
 }
