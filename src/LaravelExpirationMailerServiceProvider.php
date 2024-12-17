@@ -24,6 +24,6 @@ class LaravelExpirationMailerServiceProvider extends PackageServiceProvider
 
     public function boot()
     {
-//        $this->loadMigrationsFrom(__DIR__.'/../database/migrations'); no default migration run
+        //        $this->loadMigrationsFrom(__DIR__.'/../database/migrations'); no default migration run
     }
 }
