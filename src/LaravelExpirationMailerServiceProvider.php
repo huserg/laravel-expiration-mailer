@@ -7,6 +7,7 @@ use HuserG\LaravelExpirationMailer\Models\Expiration;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Illuminate\Console\Scheduling\Schedule;
 
 class LaravelExpirationMailerServiceProvider extends PackageServiceProvider
 {
