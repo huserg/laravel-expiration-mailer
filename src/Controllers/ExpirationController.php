@@ -2,15 +2,15 @@
 
 namespace HuserG\LaravelExpirationMailer\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use HuserG\LaravelExpirationMailer\Models\Expiration;
-use HuserG\LaravelExpirationMailer\Mail\ExpirationNotification;
+use Illuminate\Http\Request;
 
-class ExpirationController {
-
-    public function index() {
+class ExpirationController
+{
+    public function index()
+    {
         $expirations = Expiration::all();
+
         return view('laravel-expiration-manager::index', compact('expirations'));
     }
 

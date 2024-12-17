@@ -7,7 +7,6 @@ use HuserG\LaravelExpirationMailer\Models\Expiration;
 use Illuminate\Support\Facades\Schedule;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use HuserG\LaravelExpirationMailer\Commands\LaravelExpirationMailerCommand;
 
 class LaravelExpirationMailerServiceProvider extends PackageServiceProvider
 {
@@ -24,7 +23,6 @@ class LaravelExpirationMailerServiceProvider extends PackageServiceProvider
             ->hasViews()
             ->hasMigration('create_expirations_table');
     }
-
 
     public function boot()
     {
