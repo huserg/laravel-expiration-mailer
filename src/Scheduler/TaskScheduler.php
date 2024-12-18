@@ -3,8 +3,8 @@
 namespace HuserG\LaravelExpirationMailer\Scheduler;
 
 use HuserG\LaravelExpirationMailer\Commands\SendExpirationEmails;
-use Illuminate\Console\Scheduling\Schedule;
 use HuserG\LaravelExpirationMailer\Models\Expiration;
+use Illuminate\Console\Scheduling\Schedule;
 
 class TaskScheduler
 {

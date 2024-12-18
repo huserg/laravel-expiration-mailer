@@ -2,8 +2,6 @@
 
 namespace HuserG\LaravelExpirationMailer;
 
-use HuserG\LaravelExpirationMailer\Commands\SendExpirationEmails;
-use HuserG\LaravelExpirationMailer\Models\Expiration;
 use HuserG\LaravelExpirationMailer\Scheduler\TaskScheduler;
 use Illuminate\Console\Scheduling\Schedule;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
@@ -33,7 +31,6 @@ class LaravelExpirationMailerServiceProvider extends PackageServiceProvider
                     ->askToStarRepoOnGitHub('huserg/laravel-expiration-mailer');
             });
     }
-
 
     public function boot(): void
     {
